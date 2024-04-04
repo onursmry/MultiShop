@@ -6,16 +6,16 @@ using MultiShop.Catalog.Settings;
 
 namespace MultiShop.Catalog.Services.ProductServices;
 
-public class ProductService:IProductService
+public class ProductService : IProductService
 {
     private readonly IMapper _mapper;
     private readonly IMongoCollection<Product> _productCollection;
 
-    public ProductService(IMapper mapper,IDatabaseSettings _databaseSettings)
+    public ProductService(IMapper mapper, IDatabaseSettings databaseSettings)
     {
-        var client = new MongoClient(_databaseSettings.ConnectionString);
-        var database = client.GetDatabase(_databaseSettings.DatabaseName);
-        _productCollection = database.GetCollection<Product>(_databaseSettings.ProductCollectionName);
+        var client = new MongoClient(databaseSettings.ConnectionString);
+        var database = client.GetDatabase(databaseSettings.DatabaseName);
+        _productCollection = database.GetCollection<Product>(databaseSettings.ProductCollectionName);
         _mapper = mapper;
     }
 
