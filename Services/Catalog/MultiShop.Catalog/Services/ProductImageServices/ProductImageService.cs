@@ -11,11 +11,11 @@ public class ProductImageService : IProductImageService
     private readonly IMapper _mapper;
     private readonly IMongoCollection<ProductImage> _productImageRepository;
 
-    public ProductImageService(IMapper mapper, IDatabaseSettings _databaseSettings)
+    public ProductImageService(IMapper mapper, IDatabaseSettings databaseSettings)
     {
-        var client = new MongoClient(_databaseSettings.ConnectionString);
-        var database = client.GetDatabase(_databaseSettings.DatabaseName);
-        _productImageRepository = database.GetCollection<ProductImage>(_databaseSettings.ProductImageCollectionName);
+        var client = new MongoClient(databaseSettings.ConnectionString);
+        var database = client.GetDatabase(databaseSettings.DatabaseName);
+        _productImageRepository = database.GetCollection<ProductImage>(databaseSettings.ProductImageCollectionName);
         _mapper = mapper;
     }
 

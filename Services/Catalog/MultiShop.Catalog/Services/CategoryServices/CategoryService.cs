@@ -11,11 +11,11 @@ public class CategoryService : ICategoryService
     private readonly IMongoCollection<Category> _categoryCollection;
     private readonly IMapper _mapper;
 
-    public CategoryService(IMapper mapper, IDatabaseSettings _databaseSettings)
+    public CategoryService(IMapper mapper, IDatabaseSettings databaseSettings)
     {
-        var client = new MongoClient(_databaseSettings.ConnectionString);
-        var database = client.GetDatabase(_databaseSettings.DatabaseName);
-        _categoryCollection = database.GetCollection<Category>(_databaseSettings.CategoryCollectionName);
+        var client = new MongoClient(databaseSettings.ConnectionString);
+        var database = client.GetDatabase(databaseSettings.DatabaseName);
+        _categoryCollection = database.GetCollection<Category>(databaseSettings.CategoryCollectionName);
         _mapper = mapper;
     }
 

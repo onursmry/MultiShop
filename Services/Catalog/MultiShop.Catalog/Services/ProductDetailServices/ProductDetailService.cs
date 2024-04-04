@@ -11,11 +11,11 @@ public class ProductDetailService : IProductDetailService
     private readonly IMapper _mapper;
     private readonly IMongoCollection<ProductDetail> _productDetailRepository;
 
-    public ProductDetailService(IMapper mapper, IDatabaseSettings _databaseSettings)
+    public ProductDetailService(IMapper mapper, IDatabaseSettings databaseSettings)
     {
-        var client = new MongoClient(_databaseSettings.ConnectionString);
-        var database = client.GetDatabase(_databaseSettings.DatabaseName);
-        _productDetailRepository = database.GetCollection<ProductDetail>(_databaseSettings.ProductDetailCollectionName);
+        var client = new MongoClient(databaseSettings.ConnectionString);
+        var database = client.GetDatabase(databaseSettings.DatabaseName);
+        _productDetailRepository = database.GetCollection<ProductDetail>(databaseSettings.ProductDetailCollectionName);
         _mapper = mapper;
     }
 
