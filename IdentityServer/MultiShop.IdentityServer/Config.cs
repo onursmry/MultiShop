@@ -22,6 +22,11 @@ public static class Config
             Scopes = { "OrderFullPermission" }
         },
 
+        new ApiResource("ResourceCargo")
+        {
+            Scopes = { "CargoFullPermission", "CargoReadPermission" }
+        },
+
         new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
     };
 
@@ -40,6 +45,8 @@ public static class Config
             new ApiScope("CatalogReadPermission", "Partially authorized for reading operations only" ),
             new ApiScope("DiscountFullPermission", "Fully authorized for discount operations"),
             new ApiScope("OrderFullPermission", "Fully authorized for order operations"),
+            new ApiScope("CargoFullPermission", "Fully authorized for cargo operations"),
+            new ApiScope("CargoReadPermission", "Partially authorized for reading operations only" ),
             new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
         };
 
@@ -74,7 +81,7 @@ public static class Config
                 //AllowOfflineAccess = true,
                 AllowedScopes =
                 {
-                    "CatalogFullPermission", "CatalogReadPermission", "DiscountFullPermission", "OrderFullPermission",
+                    "CatalogFullPermission", "CatalogReadPermission", "DiscountFullPermission", "OrderFullPermission", "CargoFullPermission", "CargoReadPermission",
                     IdentityServerConstants.LocalApi.ScopeName,
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Email,
