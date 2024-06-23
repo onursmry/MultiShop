@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.IdentityModel.Tokens.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     options.Authority = builder.Configuration["IdentityServerUrl"];
     options.Audience = "ResourceDiscount";
     options.RequireHttpsMetadata = false;
+    options.MapInboundClaims = false; //"it wasn't mapping to "sub" so I added this"
 });
 
 builder.Services.AddControllers();
@@ -27,6 +29,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

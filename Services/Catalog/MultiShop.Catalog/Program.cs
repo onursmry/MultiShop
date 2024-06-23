@@ -1,3 +1,4 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.Reflection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
@@ -14,6 +15,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     options.Authority = builder.Configuration["IdentityServerUrl"];
     options.Audience = "ResourceCatalog";
     options.RequireHttpsMetadata = false;
+    options.MapInboundClaims = false; //"it wasn't mapping to "sub" so I added this"
 });
 
 // Add services to the container.
@@ -46,6 +48,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

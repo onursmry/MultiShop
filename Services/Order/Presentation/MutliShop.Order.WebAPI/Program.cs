@@ -5,6 +5,7 @@ using MultiShop.Order.Application.Interfaces;
 using MultiShop.Order.Application.Services;
 using MultiShop.Order.Persistence.Context;
 using MultiShop.Order.Persistence.Repositories;
+using System.IdentityModel.Tokens.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     options.Authority = builder.Configuration["IdentityServerUrl"];
     options.Audience = "ResourceOrder";
     options.RequireHttpsMetadata = false;
+    options.MapInboundClaims = false; //"it wasn't mapping to "sub" so I added this"
 });
 
 builder.Services.AddDbContext<OrderContext>();
@@ -51,6 +53,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 app.UseAuthentication();
 app.UseAuthorization();
 

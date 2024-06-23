@@ -4,6 +4,7 @@ using MultiShop.Cargo.BusinessLayer.Concrete;
 using MultiShop.Cargo.DataAccessLayer.Abstract;
 using MultiShop.Cargo.DataAccessLayer.Concrete;
 using MultiShop.Cargo.DataAccessLayer.EntityFramework;
+using System.IdentityModel.Tokens.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +13,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     options.Authority = builder.Configuration["IdentityServerUrl"];
     options.Audience = "ResourceCargo";
     options.RequireHttpsMetadata = false;
-    //It should be used like this in production
+    options.MapInboundClaims = false; //"it wasn't mapping to "sub" so I added this"
+
+    //It should be used like this in production, default is true
     //if (builder.Environment.IsDevelopment())
     //{
     //    options.RequireHttpsMetadata = false;
@@ -51,6 +54,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

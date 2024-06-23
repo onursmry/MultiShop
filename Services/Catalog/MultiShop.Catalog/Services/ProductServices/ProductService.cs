@@ -10,12 +10,14 @@ public class ProductService : IProductService
 {
     private readonly IMapper _mapper;
     private readonly IMongoCollection<Product> _productCollection;
+    private readonly IMongoCollection<Category> _categoryCollection;
 
     public ProductService(IMapper mapper, IDatabaseSettings databaseSettings)
     {
         var client = new MongoClient(databaseSettings.ConnectionString);
         var database = client.GetDatabase(databaseSettings.DatabaseName);
         _productCollection = database.GetCollection<Product>(databaseSettings.ProductCollectionName);
+        _categoryCollection = database.GetCollection<Category>(databaseSettings.CategoryCollectionName);
         _mapper = mapper;
     }
 
@@ -28,6 +30,16 @@ public class ProductService : IProductService
     public async Task DeleteProductAsync(string productId)
     {
         await _productCollection.DeleteOneAsync(x => x.ProductId == productId);
+    }
+
+    public async Task<List<ResultProductsWithCategoryDto>> GetAllProductsWithCategoryAsync()
+    {
+        var products = await _productCollection.Find(x => true).ToListAsync();
+        foreach (var product in products)
+        {
+            product.Category = await _categoryCollection.Find(x => x.CategoryId == product.CategoryId).FirstOrDefaultAsync();
+        }
+        return _mapper.Map<List<ResultProductsWithCategoryDto>>(products);
     }
 
     public async Task UpdateProductAsync(UpdateProductDto updateProductDto)
