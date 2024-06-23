@@ -27,6 +27,11 @@ public static class Config
             Scopes = { "CargoFullPermission", "CargoReadPermission" }
         },
 
+        new ApiResource("ResourceBasket")
+        {
+            Scopes = { "BasketFullPermission" }
+        },
+
         new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
     };
 
@@ -47,6 +52,7 @@ public static class Config
             new ApiScope("OrderFullPermission", "Fully authorized for order operations"),
             new ApiScope("CargoFullPermission", "Fully authorized for cargo operations"),
             new ApiScope("CargoReadPermission", "Partially authorized for reading operations only" ),
+            new ApiScope("BasketFullPermission", "Fully authorized for basket operations" ),
             new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
         };
 
@@ -59,7 +65,7 @@ public static class Config
                 ClientId = "MultiShopVisitorId",
                 ClientName = "Multi Shop Visitor User",
 
-                AllowedGrantTypes = GrantTypes.ClientCredentials,
+                AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
                 ClientSecrets = { new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256()) },
 
                 AllowedScopes = { "CatalogReadPermission" }
@@ -71,7 +77,8 @@ public static class Config
                 ClientId = "MultiShopAdminId",
                 ClientName = "Multi Shop Admin User",
 
-                AllowedGrantTypes = GrantTypes.ClientCredentials,
+
+                AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
                 ClientSecrets = { new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256()) },
 
                 //RedirectUris = { "https://localhost:44300/signin-oidc" },
@@ -81,7 +88,7 @@ public static class Config
                 //AllowOfflineAccess = true,
                 AllowedScopes =
                 {
-                    "CatalogFullPermission", "CatalogReadPermission", "DiscountFullPermission", "OrderFullPermission", "CargoFullPermission", "CargoReadPermission",
+                    "CatalogFullPermission", "CatalogReadPermission", "DiscountFullPermission", "OrderFullPermission", "CargoFullPermission", "CargoReadPermission", "BasketFullPermission",
                     IdentityServerConstants.LocalApi.ScopeName,
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Email,
@@ -96,7 +103,7 @@ public static class Config
                 ClientId = "MultiShopManagerId",
                 ClientName = "Multi Shop Manager User",
 
-                AllowedGrantTypes = GrantTypes.ClientCredentials,
+                AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
                 ClientSecrets = { new Secret("8A5C6698-4F09-45CA-AAE3-CF2D22618BC8".Sha256()) },
 
                 //RedirectUris = { "https://localhost:44300/signin-oidc" },

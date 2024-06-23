@@ -1,0 +1,52 @@
+﻿@model ProductUpdateDto
+
+@{
+    ViewData["Title"] = "Edit Product";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>Edit Product</h4>
+                <div class="bs-example" data-example-id="bordered-table">
+                    <form method="post">
+                        <input type="hidden" asp-for="ProductId" />
+                        <div class="form-group">
+                            <label asp-for="ProductName"></label>
+                            <input type="text" class="form-control" asp-for="ProductName" />
+                            <span asp-validation-for="ProductName" class="text-danger"></span>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label asp-for="ProductPrice"></label>
+                            <input type="text" class="form-control" asp-for="ProductPrice" />
+                            <span asp-validation-for="ProductPrice" class="text-danger"></span>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label asp-for="ProductImageUrl"></label>
+                            <input type="text" class="form-control" asp-for="ProductImageUrl" />
+                            <span asp-validation-for="ProductImageUrl" class="text-danger"></span>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label asp-for="CategoryId">Product Category</label>
+                            @Html.DropDownListFor(m => m.CategoryId, (List<SelectListItem>)ViewBag.CategoriesList, new { @class = "form-control" })
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label asp-for="ProductDescription"></label>
+                            <textarea asp-for="ProductDescription" class="form-control" rows="5"></textarea>
+                            <span asp-validation-for="ProductDescription" class="text-danger"></span>
+                        </div>
+                        <br />
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
