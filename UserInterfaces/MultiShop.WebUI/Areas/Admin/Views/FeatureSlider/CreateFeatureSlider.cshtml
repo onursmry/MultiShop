@@ -1,0 +1,30 @@
+﻿@model FeatureSliderCreateDto
+
+@{
+    ViewData["Title"] = "CreateFeatureSlider";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>Create New Feature Slider</h4>
+                <div class="bs-example" data-example-id="bordered-table">
+                    <form method="post">
+                        <label>Feature Slider Title</label>
+                        <input type="text" class="form-control" value="" asp-for="Title" />
+                        <br />
+                        <label>Feature Slider Description</label>
+                        <input type="text" class="form-control" value="" asp-for="Description" />
+                        <br />
+                        <label>Feature Slider Image</label>
+                        <input type="text" class="form-control" value="" asp-for="ImageUrl" />
+                        <br />
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
