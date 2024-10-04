@@ -1,0 +1,48 @@
+﻿@model List<ResultSpecialOfferDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+
+}
+
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>Special Offers List</h4>
+                <div class="bs-example" data-example-id="bordered-table">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Special Offer Name</th>
+                                <th>Special Offer Subtitle</th>
+                                <th>Delete</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                count++;
+                                <tr>
+                                    <th scope="row">@item.Title</th>
+                                    <td>@item.SubTitle</td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="SpecialOffer" asp-action="DeleteSpecialOffer" asp-route-id="@item.SpecialOfferId" class="btn btn-danger">Delete</a>
+                                    </td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="SpecialOffer" asp-action="EditSpecialOffer" asp-route-id="@item.SpecialOfferId" class="btn btn-success">Edit</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a asp-area="Admin" asp-controller="SpecialOffer" asp-action="CreateSpecialOffer" class="btn btn-primary">Add New Special Offer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

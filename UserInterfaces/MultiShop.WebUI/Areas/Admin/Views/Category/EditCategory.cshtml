@@ -14,7 +14,10 @@
                     <form method="post">
                         <input type="hidden" asp-for="CategoryId" />
                         <label>Category Name</label>
-                        <input type="text" class="form-control" value="" asp-for="CategoryName" value="@Model.CategoryName" />
+                        <input type="text" class="form-control" value="@Model.CategoryName" asp-for="CategoryName" value="@Model.CategoryName" />
+                        <br />
+                        <label>Category Image</label>
+                        <input type="text" class="form-control" value="@Model.ImageUrl" asp-for="ImageUrl" />
                         <br />
                         <button type="submit" class="btn btn-primary">Update</button>
                     </form>

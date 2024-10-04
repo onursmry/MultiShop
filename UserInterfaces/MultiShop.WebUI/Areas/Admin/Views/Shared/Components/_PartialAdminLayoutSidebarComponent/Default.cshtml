@@ -1,4 +1,6 @@
-﻿<aside class="main-sidebar dark-bg">
+﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<aside class="main-sidebar dark-bg">
     <section class="sidebar">
         <div class="user-panel black-bg">
             <div class="pull-left image"> <img src="~/MultiShopAdmin/html/dist/img/img1.jpg" class="img-circle" alt="User Image"> </div>
@@ -17,13 +19,16 @@
                 </ul>
             </li>
             <li class="treeview">
-                <a> <i class="fa fa-car"></i> <span>Products</span><span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span></a>
+                <a> <i class="fa fa-cubes"></i> <span>Products</span><span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span></a>
                 <ul class="treeview-menu">
                     <li><a asp-area="Admin" asp-controller="Product" asp-action="Index"><i class="fa fa-angle-right"></i>Products List</a> </li>
                     <li><a asp-area="Admin" asp-controller="Product" asp-action="ProductListWithCategory"><i class="fa fa-angle-right"></i>Products List - Category</a> </li>
                 </ul>
             </li>
-
+            <li><a asp-controller="SpecialOffer" asp-action="Index"><i class="fa fa-percent"></i>Discount Percentages</a> </li>
+            <li><a asp-controller="FeatureSlider" asp-action="Index"><i class="fa fa-images"></i>Slider Management</a> </li>
+            <li><a asp-controller="Feature" asp-action="Index"><i class="fa fa-message"></i>Features Management</a> </li>
+            <li><a asp-controller="Default" asp-action="Index"><i class="fa fa-map-pin"></i>Go to Site</a> </li>
 
         </ul>
         <!-- sidebar-menu -->
