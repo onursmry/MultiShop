@@ -6,6 +6,7 @@ public interface IProductImageService
 {
     Task<List<ResultProductImageDto>> GetAllProductImagesAsync();
     Task<GetByIdProductImageDto> GetProductImageByIdAsync(string productImageId);
+    Task<GetByIdProductImageDto> GetProductImageByProductIdAsync(string productId);
     Task CreateProductImageAsync(CreateProductImageDto createProductImageDto);
     Task UpdateProductImageAsync(UpdateProductImageDto updateProductImageDto);
     Task DeleteProductImageAsync(string productImageId);

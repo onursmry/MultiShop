@@ -30,15 +30,22 @@ namespace MultiShop.Catalog.Controllers
             return Ok(productImage);
         }
 
+        [HttpGet("ProductImagesByProductId")]
+        public async Task<IActionResult> GetProductImagesByProductId(string productId)
+        {
+            var productImages = await _productImageService.GetProductImageByProductIdAsync(productId);
+            return Ok(productImages);
+        }
+
         [HttpPost]
-        public async Task<IActionResult> CreateProductImage([FromBody] CreateProductImageDto createProductImageDto)
+        public async Task<IActionResult> CreateProductImage(CreateProductImageDto createProductImageDto)
         {
             await _productImageService.CreateProductImageAsync(createProductImageDto);
             return Ok("ProductImage Added Successfully");
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateProductImage([FromBody] UpdateProductImageDto updateProductImageDto)
+        public async Task<IActionResult> UpdateProductImage(UpdateProductImageDto updateProductImageDto)
         {
             await _productImageService.UpdateProductImageAsync(updateProductImageDto);
             return Ok("ProductImage Updated Successfully");

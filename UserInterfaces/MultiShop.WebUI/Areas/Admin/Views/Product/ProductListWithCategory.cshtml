@@ -19,6 +19,8 @@
                                 <th>Product Name</th>
                                 <th>Product Price</th>
                                 <th>Product Category</th>
+                                <th>Product Images</th>
+                                <th>Description & Info</th>
                                 <th>Delete</th>
                                 <th>Edit</th>
                             </tr>
@@ -32,6 +34,12 @@
                                     <td>@item.ProductName</td>
                                     <td>@item.ProductPrice.ToString("C2")</td>
                                     <td>@item.Category.CategoryName</td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="ProductImage" asp-action="Index" asp-route-productId="@item.ProductId" class="btn btn-warning">Product Images</a>
+                                    </td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="ProductDetail" asp-action="EditProductDetail" asp-route-productId="@item.ProductId" class="btn btn-info">Description & Info</a>
+                                    </td>
                                     <td>
                                         <a asp-area="Admin" asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@item.ProductId" class="btn btn-danger">Delete</a>
                                     </td>

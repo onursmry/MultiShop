@@ -6,6 +6,7 @@ public interface IProductDetailService
 {
     Task<List<ResultProductDetailDto>> GetAllProductDetailsAsync();
     Task<GetByIdProductDetailDto> GetProductDetailByIdAsync(string productDetailId);
+    Task<GetByIdProductDetailDto> GetProductDetailByProductIdAsync(string productId);
     Task CreateProductDetailAsync(CreateProductDetailDto createProductDetailDto);
     Task UpdateProductDetailAsync(UpdateProductDetailDto updateProductDetailDto);
     Task DeleteProductDetailAsync(string productDetailId);

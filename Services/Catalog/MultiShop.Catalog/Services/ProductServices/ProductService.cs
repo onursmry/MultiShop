@@ -42,6 +42,16 @@ public class ProductService : IProductService
         return _mapper.Map<List<ResultProductsWithCategoryDto>>(products);
     }
 
+    public async Task<List<ResultProductsWithCategoryDto>> GetAllProductsWithCategoryByCategoryIdAsync(string categoryId)
+    {
+        var products = await _productCollection.Find(x => x.CategoryId == categoryId).ToListAsync();
+        foreach (var product in products)
+        {
+            product.Category = await _categoryCollection.Find(x => x.CategoryId == product.CategoryId).FirstOrDefaultAsync();
+        }
+        return _mapper.Map<List<ResultProductsWithCategoryDto>>(products);
+    }
+
     public async Task UpdateProductAsync(UpdateProductDto updateProductDto)
     {
         var product = _mapper.Map<Product>(updateProductDto);
@@ -59,4 +69,5 @@ public class ProductService : IProductService
         var product = await _productCollection.Find(x => x.ProductId == productId).FirstOrDefaultAsync();
         return _mapper.Map<GetByIdProductDto>(product);
     }
+
 }

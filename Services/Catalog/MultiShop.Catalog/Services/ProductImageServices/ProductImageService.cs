@@ -19,6 +19,12 @@ public class ProductImageService : IProductImageService
         _mapper = mapper;
     }
 
+    public async Task<GetByIdProductImageDto> GetProductImageByProductIdAsync(string productId)
+    {
+        var productImage = await _productImageRepository.Find(x => x.ProductId == productId).FirstOrDefaultAsync();
+        return _mapper.Map<GetByIdProductImageDto>(productImage);
+    }
+
     public async Task CreateProductImageAsync(CreateProductImageDto createProductImageDto)
     {
         var productImage = _mapper.Map<ProductImage>(createProductImageDto);

@@ -47,4 +47,10 @@ public class ProductDetailService : IProductDetailService
         var productDetail = await _productDetailRepository.Find(x => x.ProductDetailId == productDetailId).FirstOrDefaultAsync();
         return _mapper.Map<GetByIdProductDetailDto>(productDetail);
     }
+
+    public async Task<GetByIdProductDetailDto> GetProductDetailByProductIdAsync(string productId)
+    {
+        var productDetail = await _productDetailRepository.Find(x => x.ProductId == productId).FirstOrDefaultAsync();
+        return _mapper.Map<GetByIdProductDetailDto>(productDetail);
+    }
 }

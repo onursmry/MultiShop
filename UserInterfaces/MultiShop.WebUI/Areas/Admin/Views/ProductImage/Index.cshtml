@@ -1,0 +1,40 @@
+﻿@model UpdateProductImageDto
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>Edit Product Images</h4>
+                <div class="bs-example" data-example-id="bordered-table">
+                    <form method="post">
+                        <input type="hidden" name="ProductId" asp-for="ProductId" />
+                        <input type="hidden" name="ProductImageId" asp-for="ProductImageId" />
+                        <label>Product Images: </label>
+                        <div id="imageInputs">
+                            @foreach (var item in Model.Images)
+                            {
+                                <div class="input-group mb-2">
+                                    <label class="me-2">#@(count + 1) Image:</label>
+                                    <input type="text" name="Images[@(count)]" class="form-control" value="@item" />
+                                </div>
+                                <hr />
+                                count++;
+                            }
+                        </div>
+                        <br />
+                        <button type="button" id="addImageInput" class="btn btn-success">Add Image</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="~/js/ProductImageDetail.js"></script>

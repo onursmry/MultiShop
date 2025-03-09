@@ -9,6 +9,9 @@
   <ItemGroup>
     <Folder Include="CatalogDtos\CategoryDtos\" />
     <Folder Include="CatalogDtos\FeatureDtos\" />
+    <Folder Include="CatalogDtos\BrandDtos\" />
+    <Folder Include="CatalogDtos\AboutDtos\" />
+    <Folder Include="CatalogDtos\ProductImageDtos\" />
   </ItemGroup>
 
 </Project>

@@ -27,7 +27,7 @@
             <div class="row pb-3">
                 @await Component.InvokeAsync("_PartialProductSortingComponent")
 
-                @await Component.InvokeAsync("_PartialProductListComponent")
+                @await Component.InvokeAsync("_PartialProductListComponent", new { categoryId = ViewBag.CategoryId })
 
                 @await Component.InvokeAsync("_PartialProductListPaginationPartial")
             </div>
