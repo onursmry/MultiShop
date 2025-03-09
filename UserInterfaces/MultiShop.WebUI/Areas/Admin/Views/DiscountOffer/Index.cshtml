@@ -1,0 +1,44 @@
+﻿@model List<ResultDiscountOfferDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>Discount Offers List</h4>
+                <div class="bs-example" data-example-id="bordered-table">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Discount Offer Title</th>
+                                <th>Discount Offer Subtitle</th>
+                                <th>Delete</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Title</td>
+                                    <td>@item.SubTitle</td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="DiscountOffer" asp-action="DeleteDiscountOffer" asp-route-id="@item.DiscountOfferId" class="btn btn-danger">Delete</a>
+                                    </td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="DiscountOffer" asp-action="EditDiscountOffer" asp-route-id="@item.DiscountOfferId" class="btn btn-success">Edit</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a asp-area="Admin" asp-controller="DiscountOffer" asp-action="CreateDiscountOffer" class="btn btn-primary">Add New Discount Offer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

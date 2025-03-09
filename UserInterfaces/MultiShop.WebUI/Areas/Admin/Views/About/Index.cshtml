@@ -1,0 +1,48 @@
+﻿@model List<ResultAboutDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>Abouts List</h4>
+                <div class="bs-example" data-example-id="bordered-table">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                                <th>Address</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Delete</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Description</td>
+                                    <td>@item.Address</td>
+                                    <td>@item.Email</td>
+                                    <td>@item.Phone</td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="About" asp-action="DeleteAbout" asp-route-id="@item.AboutId" class="btn btn-danger">Delete</a>
+                                    </td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="About" asp-action="EditAbout" asp-route-id="@item.AboutId" class="btn btn-success">Edit</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a asp-area="Admin" asp-controller="About" asp-action="CreateAbout" class="btn btn-primary">Add New About</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

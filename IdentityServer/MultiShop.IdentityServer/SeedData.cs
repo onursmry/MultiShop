@@ -1,5 +1,5 @@
 ﻿using System.Security.Claims;
-using IdentityModel;
+using Duende.IdentityModel;
 using MultiShop.IdentityServer.Data;
 using MultiShop.IdentityServer.Models;
 using Microsoft.AspNetCore.Identity;

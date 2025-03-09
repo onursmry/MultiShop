@@ -1,0 +1,44 @@
+﻿@model UpdateReviewDto
+
+@{
+    ViewData["Title"] = "EditReview";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>Edit Category</h4>
+                <div class="bs-example" data-example-id="bordered-table">
+                    <form method="post">
+                        <input type="hidden" asp-for="UserReviewId" />
+                        <input type="hidden" asp-for="ProductId" />
+                        <label>User</label>
+                        <input type="text" class="form-control" asp-for="FirstName" />
+                        <br />
+                        <label>User Image</label>
+                        <input type="text" class="form-control" asp-for="ImageUrl" />
+                        <br />
+                        <label>Email</label>
+                        <input type="text" class="form-control" asp-for="Email" />
+                        <br />
+                        <label>User Rating</label>
+                        <input type="number" class="form-control" asp-for="UserRating" />
+                        <br />
+                        <label>User Review</label>
+                        <textarea rows="3" class="form-control" asp-for="ReviewDetail"></textarea>
+                        <br />
+                        <label>Created On</label>
+                        <input type="date" class="form-control" asp-for="CreatedOn" />
+                        <br />
+                        <label>Status</label>
+                        <input type="checkbox" class="form-control" asp-for="Status" />
+                        <br />
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

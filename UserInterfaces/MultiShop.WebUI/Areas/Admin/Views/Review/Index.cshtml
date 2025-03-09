@@ -1,0 +1,53 @@
+﻿@using System.Globalization
+@model List<ResultReviewDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>Categories List</h4>
+                <div class="bs-example" data-example-id="bordered-table">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>User</th>
+                                <th>Review</th>
+                                <th>Review Date</th>
+                                <th>Status</th>
+                                <th>Delete</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                count++;
+                                <tr>
+                                    <th scope="row">@count</th>
+                                    <td>@($"{item.FirstName} {item.LastName}")</td>
+                                    <td>@item.ReviewDetail</td>
+                                    <td>@item.CreatedOn.ToShortDateString()</td>
+                                    <td>@item.Status</td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="Review" asp-action="DeleteReview" asp-route-id="@item.UserReviewId" class="btn btn-danger">Delete</a>
+                                    </td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="Review" asp-action="EditReview" asp-route-id="@item.UserReviewId" class="btn btn-success">Edit</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a asp-area="Admin" asp-controller="Category" asp-action="CreateCategory" class="btn btn-primary">Add New Category</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
